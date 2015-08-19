@@ -1,3 +1,4 @@
+//challenge 1 - combine two arrays, one forwards and one backwards
 function addAndReverseArray(array, arrayReverse){
   var combined = [];
   for(var i = 0; i < array.length; i++) {
@@ -9,6 +10,7 @@ var primes = [2, 3, 5, 7, 11, 13, 17, 19];
 var nonPrimes = [1, 4, 6, 8, 9, 10, 12, 14];
 console.log(addAndReverseArray(primes, nonPrimes));
 
+//challenge 2 - combine the two arrays then sort them in numerical order
 function combineAndSort(array, secondArray){
   var combinedSort = [];
   for(var i = 0; i < array.length; i++) {
@@ -32,6 +34,7 @@ var numbers1 = [4, 1, 6, 5, 8];
 var numbers2 = [7, 3, 2, 9, 10];
 console.log(combineAndSort(numbers1, numbers2));
 
+//challenge 3 - make right triangle, third parameter wasn't stated in the notes but I guessed that it was angle.
 function rightTriangle(a, b, angle) {
   this.a = a;
   this.b = b;
@@ -45,3 +48,13 @@ rightTriangle.prototype.hypotenuse = function(){
 var newTriangle = new rightTriangle(3, 4, 90);
 newTriangle.hypotenuse();
 console.log(newTriangle.c);
+//challenge 4 - recursive function that returns a sum of each number descending down to 0 by calling itself
+function recursiveAdd(targetNum){
+  if(targetNum == 0){
+    return 0
+  }
+  else{
+    return targetNum + recursiveAdd(targetNum - 1);
+  }
+}
+console.log(recursiveAdd(5))
