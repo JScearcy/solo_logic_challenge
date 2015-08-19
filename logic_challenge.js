@@ -36,16 +36,15 @@ console.log(combineAndSort(numbers1, numbers2));
 
 //challenge 3 - make right triangle, third parameter wasn't stated in the notes but I guessed that it was angle. Added SAS Triangle support
 
-function SASorRightTriangle(a, b, angle, type){
+function SASorRightTriangle(a, b, angle){
   this.a = a;
   this.b = b;
   this.angle = angle;
-  this.type = type;
 }
 SASorRightTriangle.prototype.findSideC = function() {
   if(this.angle == 90) {
     this.c =  Math.sqrt(((this.a*this.a) + (this.b*this.b)));
-  } else if(this.type.toUpperCase() == 'SAS'){
+  } else {
     var side1 = this.a * this.a;
     var side2 = this.b * this.b;
     this.c = Math.sqrt((side1 + side2) - 2 * this.a * this.b * Math.cos((this.angle * (Math.PI / 180))));
@@ -53,9 +52,11 @@ SASorRightTriangle.prototype.findSideC = function() {
   }
 }
 
-var testTriangle = new SASorRightTriangle(5, 7, 49, 'sas');
+var testTriangle = new SASorRightTriangle(5, 7, 49);
+var rightTriangle = new SASorRightTriangle(3, 4, 90);
 testTriangle.findSideC();
-console.log(testTriangle.c);
+rightTriangle.findSideC();
+console.log('SAS Triangle: ' + testTriangle.c + ' Right Triangle: ' + rightTriangle.c);
 //challenge 4 - recursive function that returns a sum of each number descending down to 0 by calling itself
 function recursiveAdd(targetNum){
   if(targetNum == 0){
