@@ -34,20 +34,28 @@ var numbers1 = [4, 1, 6, 5, 8];
 var numbers2 = [7, 3, 2, 9, 10];
 console.log(combineAndSort(numbers1, numbers2));
 
-//challenge 3 - make right triangle, third parameter wasn't stated in the notes but I guessed that it was angle.
-function rightTriangle(a, b, angle) {
+//challenge 3 - make right triangle, third parameter wasn't stated in the notes but I guessed that it was angle. Added SAS Triangle support
+
+function SASorRightTriangle(a, b, angle, type){
   this.a = a;
   this.b = b;
   this.angle = angle;
+  this.type = type;
 }
-rightTriangle.prototype.hypotenuse = function(){
-  if(this.angle == 90){
-    this.c = Math.sqrt(((this.a*this.a) + (this.b*this.b)));
+SASorRightTriangle.prototype.findSideC = function() {
+  if(this.angle == 90) {
+    this.c =  Math.sqrt(((this.a*this.a) + (this.b*this.b)));
+  } else if(this.type.toUpperCase() == 'SAS'){
+    var side1 = this.a * this.a;
+    var side2 = this.b * this.b;
+    this.c = Math.sqrt((side1 + side2) - 2 * this.a * this.b * Math.cos((this.angle * (Math.PI / 180))));
+    this.c = Math.round(this.c * 100) / 100;
   }
 }
-var newTriangle = new rightTriangle(3, 4, 90);
-newTriangle.hypotenuse();
-console.log(newTriangle.c);
+
+var testTriangle = new SASorRightTriangle(5, 7, 49, 'sas');
+testTriangle.findSideC();
+console.log(testTriangle.c);
 //challenge 4 - recursive function that returns a sum of each number descending down to 0 by calling itself
 function recursiveAdd(targetNum){
   if(targetNum == 0){
